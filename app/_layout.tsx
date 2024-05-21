@@ -83,6 +83,10 @@ const InitialLayout = () => {
           ),
         }}
       />
+      <Stack.Screen
+        name='help'
+        options={{ title: 'Help', presentation: 'modal' }}
+      />
     </Stack>
   );
 };
