@@ -15,8 +15,8 @@ const Page = () => {
           source={{ uri: assets[0].uri }}
           style={styles.video}
           isMuted
-          isLooping
-          shouldPlay
+          // isLooping
+          // shouldPlay
           resizeMode={ResizeMode.COVER}
         />
       )}
