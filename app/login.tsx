@@ -1,8 +1,11 @@
 import Colors from '@/constants/Colors';
 import { defaultStyles } from '@/constants/Styles';
+import { isClerkAPIResponseError, useSignIn } from '@clerk/clerk-expo';
 import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import {
+  Alert,
   KeyboardAvoidingView,
   StyleSheet,
   Text,
@@ -21,12 +24,45 @@ enum SignInType {
 const Page = () => {
   const [countryCode, setCountryCode] = useState('+49');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const router = useRouter();
+  const { signIn } = useSignIn();
 
   // Could use this to check for IOS or ANDROID
   // const keyboardVerticalOffset = Platform.OS === 'ios' ? 80 : 80;
 
   const onSignIn = async (type: SignInType) => {
     if (type === SignInType.Phone) {
+      const fullPhoneNumber = `${countryCode}${phoneNumber}`;
+      try {
+        const { supportedFirstFactors } = await signIn!.create({
+          identifier: fullPhoneNumber,
+        });
+
+        const firstPhoneFactor: any = supportedFirstFactors.find(
+          (factor: any) => {
+            return factor.strategy === 'phone_code';
+          }
+        );
+
+        const { phoneNumberId } = firstPhoneFactor;
+
+        await signIn!.prepareFirstFactor({
+          strategy: 'phone_code',
+          phoneNumberId,
+        });
+
+        router.push({
+          pathname: '/verify/[phone]',
+          params: { phone: fullPhoneNumber, signin: 'true' },
+        });
+      } catch (error) {
+        console.log('error', JSON.stringify(error, null, 2));
+        if (isClerkAPIResponseError(error)) {
+          if (error.errors[0].code === 'form_identifier_not_found') {
+            Alert.alert('Error', error.errors[0].message);
+          }
+        }
+      }
     }
   };
 

@@ -1,25 +1,43 @@
 import Colors from '@/constants/Colors';
 import { defaultStyles } from '@/constants/Styles';
-import { Link } from 'expo-router';
+import { useSignUp } from '@clerk/clerk-expo';
+import { Link, useRouter } from 'expo-router';
 import { useState } from 'react';
 import {
-  View,
-  Text,
+  KeyboardAvoidingView,
   StyleSheet,
+  Text,
   TextInput,
   TouchableOpacity,
-  KeyboardAvoidingView,
-  Platform,
+  View,
 } from 'react-native';
 
 const Page = () => {
   const [countryCode, setCountryCode] = useState('+49');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const router = useRouter();
+  const { signUp } = useSignUp();
 
   // Could use this to check for IOS or ANDROID
   // const keyboardVerticalOffset = Platform.OS === 'ios' ? 80 : 80;
 
-  const onSignup = async () => {};
+  const onSignup = async () => {
+    const fullPhoneNumber = `${countryCode}${phoneNumber}`;
+    router.push({
+      pathname: '/verify/[phone]',
+      params: { phone: fullPhoneNumber },
+    });
+    
+    // try {
+    //   await signUp!.create({ phoneNumber: fullPhoneNumber });
+    //   router.push({
+    //     pathname: '/verify/[phone]',
+    //     params: { phone: fullPhoneNumber },
+    //   });
+    // } catch (error) {
+    //   console.error('Error signing up: ', error);
+    // }
+  };
 
   return (
     <KeyboardAvoidingView style={{ flex: 1 }}>
