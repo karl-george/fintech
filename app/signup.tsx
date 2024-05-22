@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 
 const Page = () => {
-  const [countryCode, setCountryCode] = useState('+49');
+  const [countryCode, setCountryCode] = useState('+46');
   const [phoneNumber, setPhoneNumber] = useState('');
   const router = useRouter();
   const { signUp } = useSignUp();
@@ -23,20 +23,18 @@ const Page = () => {
 
   const onSignup = async () => {
     const fullPhoneNumber = `${countryCode}${phoneNumber}`;
-    router.push({
-      pathname: '/verify/[phone]',
-      params: { phone: fullPhoneNumber },
-    });
-    
-    // try {
-    //   await signUp!.create({ phoneNumber: fullPhoneNumber });
-    //   router.push({
-    //     pathname: '/verify/[phone]',
-    //     params: { phone: fullPhoneNumber },
-    //   });
-    // } catch (error) {
-    //   console.error('Error signing up: ', error);
-    // }
+
+    try {
+      await signUp!.create({ phoneNumber: fullPhoneNumber });
+      signUp!.preparePhoneNumberVerification();
+
+      router.push({
+        pathname: '/verify/[phone]',
+        params: { phone: fullPhoneNumber },
+      });
+    } catch (error) {
+      console.error('Error signing up: ', error);
+    }
   };
 
   return (
@@ -52,6 +50,7 @@ const Page = () => {
             style={styles.input}
             placeholderTextColor={Colors.gray}
             value={countryCode}
+            onChangeText={setCountryCode}
           />
           <TextInput
             style={[styles.input, { flex: 1 }]}
