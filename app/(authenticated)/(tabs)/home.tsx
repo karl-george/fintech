@@ -1,3 +1,4 @@
+import Dropdown from '@/components/Dropdown';
 import RoundButton from '@/components/RoundButton';
 import Colors from '@/constants/Colors';
 import { View, Text, ScrollView, StyleSheet, Button } from 'react-native';
@@ -18,8 +19,8 @@ const Page = () => {
       <View style={styles.actionRow}>
         <RoundButton icon={'add'} text='Add money' onPress={onAddMoney} />
         <RoundButton icon={'refresh'} text='Exchange' />
-        <RoundButton icon={'list'} text='Details'/>
-        <RoundButton icon={'add'} text='Add money' onPress={onAddMoney} />
+        <RoundButton icon={'list'} text='Details' />
+        <Dropdown />
       </View>
     </ScrollView>
   );
