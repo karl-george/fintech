@@ -61,8 +61,8 @@ const InitialLayout = () => {
     }
   }, [loaded]);
 
+  // Make sure the app is auth protected
   useEffect(() => {
-    console.log('isSignedIn', isSignedIn);
     if (!isLoaded) return;
 
     // Check whether user is in (authenticated) file group
@@ -139,6 +139,10 @@ const InitialLayout = () => {
             </TouchableOpacity>
           ),
         }}
+      />
+      <Stack.Screen
+        name='(authenticated)/(tabs)'
+        options={{ headerShown: false }}
       />
     </Stack>
   );
