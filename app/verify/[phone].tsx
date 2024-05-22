@@ -1,6 +1,10 @@
 import Colors from '@/constants/Colors';
 import { defaultStyles } from '@/constants/Styles';
-import { useSignIn, useSignUp } from '@clerk/clerk-expo';
+import {
+  isClerkAPIResponseError,
+  useSignIn,
+  useSignUp,
+} from '@clerk/clerk-expo';
 import { Link, useLocalSearchParams } from 'expo-router';
 import { Fragment, useEffect, useState } from 'react';
 import {
@@ -9,6 +13,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Platform,
+  Alert,
 } from 'react-native';
 import {
   CodeField,
@@ -38,7 +43,6 @@ const Phone = () => {
   useEffect(() => {
     // Verify the code
     if (code.length === 6) {
-      console.log('code', code);
       if (signin === 'true') {
         verifySignIn();
       } else {
@@ -47,8 +51,29 @@ const Phone = () => {
     }
   }, [code]);
 
-  const verifyCode = async () => {};
-  const verifySignIn = async () => {};
+  const verifyCode = async () => {
+    try {
+      await signUp!.attemptPhoneNumberVerification({ code });
+      await setActive!({ session: signUp!.createdSessionId });
+    } catch (error) {
+      console.log('error', JSON.stringify(error, null, 2));
+      if (isClerkAPIResponseError(error)) {
+        Alert.alert('Error', error.errors[0].message);
+      }
+    }
+  };
+
+  const verifySignIn = async () => {
+    try {
+      await signIn!.attemptFirstFactor({ strategy: 'phone_code', code });
+      await setActive!({ session: signIn!.createdSessionId });
+    } catch (error) {
+      console.log('error', JSON.stringify(error, null, 2));
+      if (isClerkAPIResponseError(error)) {
+        Alert.alert('Error', error.errors[0].message);
+      }
+    }
+  };
 
   return (
     <View style={defaultStyles.container}>
