@@ -1,5 +1,6 @@
 import Dropdown from '@/components/Dropdown';
 import RoundButton from '@/components/RoundButton';
+import WidgetList from '@/components/SortableList/WidgetList';
 import Colors from '@/constants/Colors';
 import { defaultStyles } from '@/constants/Styles';
 import { useBalanceStore } from '@/store/balanceStore';
@@ -66,6 +67,8 @@ const Page = () => {
           </View>
         ))}
       </View>
+      <Text style={defaultStyles.sectionHeader}>Widgets</Text>
+      <WidgetList />
     </ScrollView>
   );
 };
