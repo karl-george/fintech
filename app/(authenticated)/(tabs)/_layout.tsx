@@ -2,6 +2,7 @@ import Colors from '@/constants/Colors';
 import { FontAwesome } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
 import { BlurView } from 'expo-blur';
+import CustomHeader from '@/components/CustomHeader';
 
 const Layout = () => {
   return (
@@ -33,6 +34,8 @@ const Layout = () => {
           tabBarIcon: ({ size, color }) => (
             <FontAwesome name='registered' size={size} color={color} />
           ),
+          header: () => <CustomHeader />,
+          // headerTransparent: true,
         }}
       />
       <Tabs.Screen
