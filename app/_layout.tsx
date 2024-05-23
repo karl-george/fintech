@@ -70,7 +70,7 @@ const InitialLayout = () => {
 
     // If user is signed in but not in the authenticated group, push them there
     if (isSignedIn && !inAuthGroup) {
-      router.replace('/(authenticated)/(tabs)/home');
+      router.replace('/(authenticated)/(tabs)/crypto');
     } else if (!isSignedIn) {
       router.replace('/');
     }
