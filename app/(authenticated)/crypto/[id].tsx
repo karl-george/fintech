@@ -14,8 +14,14 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { CartesianChart, Line } from 'victory-native';
 
 const categories = ['Overview', 'News', 'Orders', 'Transactions'];
+
+const DATA = Array.from({ length: 31 }, (_, i) => ({
+  day: i,
+  highTmp: 40 + 30 * Math.random(),
+}));
 
 const Page = () => {
   const { id } = useLocalSearchParams();
@@ -28,6 +34,11 @@ const Page = () => {
       const info = await fetch(`/api/info?ids=${id}`).then((res) => res.json());
       return info[+id!];
     },
+  });
+
+  const { data: tickers } = useQuery({
+    queryKey: ['tickers'],
+    queryFn: async () => fetch(`/api/tickers`).then((res) => res.json()),
   });
 
   return (
@@ -130,7 +141,15 @@ const Page = () => {
         )}
         renderItem={({ item }) => (
           <>
-            <View style={{ height: 500, backgroundColor: 'green' }}></View>
+            <View style={[defaultStyles.block, { height: 500 }]}>
+              <CartesianChart data={DATA} xKey='day' yKeys={['highTmp']}>
+                {/* 👇 render function exposes various data, such as points. */}
+                {({ points }) => (
+                  // 👇 and we'll use the Line component to render a line path.
+                  <Line points={points.highTmp} color='red' strokeWidth={3} />
+                )}
+              </CartesianChart>
+            </View>
             <View style={[defaultStyles.block, { marginTop: 20 }]}>
               <Text style={styles.subtitle}>Overview</Text>
               <Text style={{ color: Colors.gray }}>
