@@ -14,7 +14,13 @@
 		96905EF65AED1B983A6B3ABC /* libPods-fintech.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EEBF8E8E6FB1BC6CAF49B5 /* libPods-fintech.a */; };
 		B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
-		49B043200E4B4A1A813B00F1 /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B21F7345E645F99EE5B182 /* noop-file.swift */; };
+		CDE145CAFE8442D3AF7D2720 /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268247F54D494C719F8DE071 /* noop-file.swift */; };
+		FCBF750381BC4316993D4C39 /* primary-Icon-60x60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06F57C5A46FC48A1852A2E7E /* primary-Icon-60x60@2x.png */; };
+		9FE188D740C04B17901E42C9 /* primary-Icon-60x60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E2A8E6BCFAB64438A5F33ECC /* primary-Icon-60x60@3x.png */; };
+		D77799ABAD4D4E7E96DC8C51 /* dark-Icon-60x60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3625DBAA08F946B0B2B255A8 /* dark-Icon-60x60@2x.png */; };
+		721989E4E6CC49FEBB947B60 /* dark-Icon-60x60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A0309528F73409981F8D81E /* dark-Icon-60x60@3x.png */; };
+		78ED34554A49482A941F600B /* vivid-Icon-60x60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8CE834BB94D47D69984C43E /* vivid-Icon-60x60@2x.png */; };
+		849268DC4018455AB1B7297B /* vivid-Icon-60x60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB821AFA23774DC3AC67A090 /* vivid-Icon-60x60@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,8 +37,14 @@
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-fintech/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
-		A2B21F7345E645F99EE5B182 /* noop-file.swift */ = {isa = PBXFileReference; name = "noop-file.swift"; path = "fintech/noop-file.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
-		2F6E966C6A6341D385507DE8 /* fintech-Bridging-Header.h */ = {isa = PBXFileReference; name = "fintech-Bridging-Header.h"; path = "fintech/fintech-Bridging-Header.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		268247F54D494C719F8DE071 /* noop-file.swift */ = {isa = PBXFileReference; name = "noop-file.swift"; path = "fintech/noop-file.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
+		55369FE594AA4A548D48EFCB /* fintech-Bridging-Header.h */ = {isa = PBXFileReference; name = "fintech-Bridging-Header.h"; path = "fintech/fintech-Bridging-Header.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		06F57C5A46FC48A1852A2E7E /* primary-Icon-60x60@2x.png */ = {isa = PBXFileReference; name = "primary-Icon-60x60@2x.png"; path = "fintech/DynamicAppIcons/primary-Icon-60x60@2x.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E2A8E6BCFAB64438A5F33ECC /* primary-Icon-60x60@3x.png */ = {isa = PBXFileReference; name = "primary-Icon-60x60@3x.png"; path = "fintech/DynamicAppIcons/primary-Icon-60x60@3x.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		3625DBAA08F946B0B2B255A8 /* dark-Icon-60x60@2x.png */ = {isa = PBXFileReference; name = "dark-Icon-60x60@2x.png"; path = "fintech/DynamicAppIcons/dark-Icon-60x60@2x.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0A0309528F73409981F8D81E /* dark-Icon-60x60@3x.png */ = {isa = PBXFileReference; name = "dark-Icon-60x60@3x.png"; path = "fintech/DynamicAppIcons/dark-Icon-60x60@3x.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B8CE834BB94D47D69984C43E /* vivid-Icon-60x60@2x.png */ = {isa = PBXFileReference; name = "vivid-Icon-60x60@2x.png"; path = "fintech/DynamicAppIcons/vivid-Icon-60x60@2x.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		EB821AFA23774DC3AC67A090 /* vivid-Icon-60x60@3x.png */ = {isa = PBXFileReference; name = "vivid-Icon-60x60@3x.png"; path = "fintech/DynamicAppIcons/vivid-Icon-60x60@3x.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,8 +69,9 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				A2B21F7345E645F99EE5B182 /* noop-file.swift */,
-				2F6E966C6A6341D385507DE8 /* fintech-Bridging-Header.h */,
+				268247F54D494C719F8DE071 /* noop-file.swift */,
+				55369FE594AA4A548D48EFCB /* fintech-Bridging-Header.h */,
+				D89814BB1A2F43A290817586 /* DynamicAppIcons */,
 			);
 			name = fintech;
 			sourceTree = "<group>";
@@ -136,6 +149,20 @@
 			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
+		D89814BB1A2F43A290817586 /* DynamicAppIcons */ = {
+			isa = "PBXGroup";
+			children = (
+				06F57C5A46FC48A1852A2E7E /* primary-Icon-60x60@2x.png */,
+				E2A8E6BCFAB64438A5F33ECC /* primary-Icon-60x60@3x.png */,
+				3625DBAA08F946B0B2B255A8 /* dark-Icon-60x60@2x.png */,
+				0A0309528F73409981F8D81E /* dark-Icon-60x60@3x.png */,
+				B8CE834BB94D47D69984C43E /* vivid-Icon-60x60@2x.png */,
+				EB821AFA23774DC3AC67A090 /* vivid-Icon-60x60@3x.png */,
+			);
+			name = DynamicAppIcons;
+			sourceTree = "<group>";
+			path = "";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -198,7 +225,13 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				C8D6D70D76BE428CAC35277C /* fintech-Bridging-Header.h in Resources */,
+				B4C49E29022247259B14DED5 /* fintech-Bridging-Header.h in Resources */,
+				FCBF750381BC4316993D4C39 /* primary-Icon-60x60@2x.png in Resources */,
+				9FE188D740C04B17901E42C9 /* primary-Icon-60x60@3x.png in Resources */,
+				D77799ABAD4D4E7E96DC8C51 /* dark-Icon-60x60@2x.png in Resources */,
+				721989E4E6CC49FEBB947B60 /* dark-Icon-60x60@3x.png in Resources */,
+				78ED34554A49482A941F600B /* vivid-Icon-60x60@2x.png in Resources */,
+				849268DC4018455AB1B7297B /* vivid-Icon-60x60@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,7 +307,7 @@
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */,
-				49B043200E4B4A1A813B00F1 /* noop-file.swift in Sources */,
+				CDE145CAFE8442D3AF7D2720 /* noop-file.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,6 +499,9 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin PBXVariantGroup section */
+/* End PBXVariantGroup section */
 	};
 	rootObject = 83CBB9F71A601CBA00E9B192 /* Project object */;
 }
