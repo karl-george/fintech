@@ -8,7 +8,7 @@ import * as SecureStore from 'expo-secure-store';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import 'react-native-reanimated';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -81,7 +81,11 @@ const InitialLayout = () => {
   }, [isSignedIn]);
 
   if (!loaded || !isLoaded) {
-    return <Text>Loading...</Text>;
+    return (
+      <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
+        <ActivityIndicator size='large' color={Colors.primary} />
+      </View>
+    );
   }
 
   return (
