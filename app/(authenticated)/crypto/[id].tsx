@@ -1,13 +1,13 @@
 import Colors from '@/constants/Colors';
 import { defaultStyles } from '@/constants/Styles';
-import { Ticker } from '@/interfaces/crypto';
 import { Ionicons } from '@expo/vector-icons';
 import { useHeaderHeight } from '@react-navigation/elements';
-import { useFont } from '@shopify/react-native-skia';
+import { Circle, useFont } from '@shopify/react-native-skia';
 import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
+import * as Haptics from 'expo-haptics';
 import { Stack, useLocalSearchParams } from 'expo-router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Image,
   ScrollView,
@@ -17,15 +17,25 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { CartesianChart, Line } from 'victory-native';
+import { SharedValue } from 'react-native-reanimated';
+import { CartesianChart, Line, useChartPressState } from 'victory-native';
 
 const categories = ['Overview', 'News', 'Orders', 'Transactions'];
+
+function ToolTip({ x, y }: { x: SharedValue<number>; y: SharedValue<number> }) {
+  return <Circle cx={x} cy={y} r={8} color={Colors.primary} />;
+}
 
 const Page = () => {
   const { id } = useLocalSearchParams();
   const headerHeight = useHeaderHeight();
   const [activeIndex, setActiveIndex] = useState(0);
   const font = useFont(require('@/assets/fonts/SpaceMono-Regular.ttf'), 12);
+  const { state, isActive } = useChartPressState({ x: 0, y: { price: 0 } });
+
+  useEffect(() => {
+    if (isActive) Haptics.selectionAsync();
+  }, [isActive]);
 
   const { data } = useQuery({
     queryKey: ['info', id],
@@ -144,6 +154,7 @@ const Page = () => {
             <View style={[defaultStyles.block, { height: 500 }]}>
               {tickers && (
                 <CartesianChart
+                  chartPressState={state}
                   axisOptions={{
                     font,
                     tickCount: 5,
@@ -163,6 +174,12 @@ const Page = () => {
                         color={Colors.primary}
                         strokeWidth={3}
                       />
+                      {isActive && (
+                        <ToolTip
+                          x={state.x.position}
+                          y={state.y.price.position}
+                        />
+                      )}
                     </>
                   )}
                 </CartesianChart>
