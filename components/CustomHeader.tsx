@@ -9,19 +9,27 @@ import { BlurView } from 'expo-blur';
 import Colors from '@/constants/Colors';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
+import { Link } from 'expo-router';
 
 const CustomHeader = () => {
   // Returns the height offset of the top camera area of the phone
   const { top } = useSafeAreaInsets();
 
   return (
-    <BlurView intensity={80} tint='extraLight' style={{ paddingTop: top }}>
+    <BlurView
+      intensity={80}
+      experimentalBlurMethod='dimezisBlurView'
+      tint='extraLight'
+      style={{ paddingTop: top }}
+    >
       <View style={styles.container}>
-        <TouchableOpacity style={styles.roundButton}>
-          <Text style={{ color: '#fff', fontWeight: '500', fontSize: 16 }}>
-            KG
-          </Text>
-        </TouchableOpacity>
+        <Link href={'(authenticated)/(modals)/account'} asChild>
+          <TouchableOpacity style={styles.roundButton}>
+            <Text style={{ color: '#fff', fontWeight: '500', fontSize: 16 }}>
+              KG
+            </Text>
+          </TouchableOpacity>
+        </Link>
         <View style={styles.searchSection}>
           <Ionicons
             style={styles.searchIcon}
