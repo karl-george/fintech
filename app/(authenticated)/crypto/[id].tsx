@@ -24,6 +24,8 @@ import Animated, {
 } from 'react-native-reanimated';
 import { CartesianChart, Line, useChartPressState } from 'victory-native';
 
+Animated.addWhitelistedNativeProps({ text: true });
+
 const categories = ['Overview', 'News', 'Orders', 'Transactions'];
 
 function ToolTip({ x, y }: { x: SharedValue<number>; y: SharedValue<number> }) {
