@@ -12,6 +12,13 @@ import * as Haptics from 'expo-haptics';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import * as LocalAuthentication from 'expo-local-authentication';
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withRepeat,
+  withSequence,
+  withTiming,
+} from 'react-native-reanimated';
 
 const Page = () => {
   const { user } = useUser();
@@ -26,12 +33,29 @@ const Page = () => {
         router.replace('/(authenticated)/(tabs)/home');
         setCode([]);
       } else {
-        // TODO: Error
+        // Error animation
+        offset.value = withSequence(
+          withTiming(-OFFSET, { duration: TIME / 2 }),
+          withRepeat(withTiming(OFFSET, { duration: TIME }), 4, true),
+          withTiming(0, { duration: TIME / 2 })
+        );
+
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
         setCode([]);
       }
     }
   }, [code]);
+
+  // Animate error effect
+  const offset = useSharedValue(0);
+  const style = useAnimatedStyle(() => {
+    return {
+      transform: [{ translateX: offset.value }],
+    };
+  });
+
+  const OFFSET = 20;
+  const TIME = 80;
 
   const onNumberPress = (number: number) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -55,7 +79,7 @@ const Page = () => {
   return (
     <SafeAreaView>
       <Text style={styles.greeting}>Welcome back, {firstName}</Text>
-      <View style={[styles.codeView]}>
+      <Animated.View style={[styles.codeView, style]}>
         {codeLength.map((_, index) => (
           <View
             key={index}
@@ -69,7 +93,7 @@ const Page = () => {
             ]}
           />
         ))}
-      </View>
+      </Animated.View>
 
       <View style={styles.numbersView}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
