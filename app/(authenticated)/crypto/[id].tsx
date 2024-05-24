@@ -1,8 +1,11 @@
 import Colors from '@/constants/Colors';
 import { defaultStyles } from '@/constants/Styles';
+import { Ticker } from '@/interfaces/crypto';
 import { Ionicons } from '@expo/vector-icons';
 import { useHeaderHeight } from '@react-navigation/elements';
+import { useFont } from '@shopify/react-native-skia';
 import { useQuery } from '@tanstack/react-query';
+import { format } from 'date-fns';
 import { Stack, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import {
@@ -18,15 +21,11 @@ import { CartesianChart, Line } from 'victory-native';
 
 const categories = ['Overview', 'News', 'Orders', 'Transactions'];
 
-const DATA = Array.from({ length: 31 }, (_, i) => ({
-  day: i,
-  highTmp: 40 + 30 * Math.random(),
-}));
-
 const Page = () => {
   const { id } = useLocalSearchParams();
   const headerHeight = useHeaderHeight();
   const [activeIndex, setActiveIndex] = useState(0);
+  const font = useFont(require('@/assets/fonts/SpaceMono-Regular.ttf'), 12);
 
   const { data } = useQuery({
     queryKey: ['info', id],
@@ -38,7 +37,8 @@ const Page = () => {
 
   const { data: tickers } = useQuery({
     queryKey: ['tickers'],
-    queryFn: async () => fetch(`/api/tickers`).then((res) => res.json()),
+    queryFn: async (): Promise<any[]> =>
+      fetch(`/api/tickers`).then((res) => res.json()),
   });
 
   return (
@@ -142,13 +142,31 @@ const Page = () => {
         renderItem={({ item }) => (
           <>
             <View style={[defaultStyles.block, { height: 500 }]}>
-              <CartesianChart data={DATA} xKey='day' yKeys={['highTmp']}>
-                {/* 👇 render function exposes various data, such as points. */}
-                {({ points }) => (
-                  // 👇 and we'll use the Line component to render a line path.
-                  <Line points={points.highTmp} color='red' strokeWidth={3} />
-                )}
-              </CartesianChart>
+              {tickers && (
+                <CartesianChart
+                  axisOptions={{
+                    font,
+                    tickCount: 5,
+                    labelOffset: { x: -2, y: 0 },
+                    labelColor: Colors.gray,
+                    formatYLabel: (v) => `${v} €`,
+                    formatXLabel: (ms) => format(new Date(ms), 'MM/yy'),
+                  }}
+                  data={tickers!}
+                  xKey='timestamp'
+                  yKeys={['price']}
+                >
+                  {({ points }) => (
+                    <>
+                      <Line
+                        points={points.price}
+                        color={Colors.primary}
+                        strokeWidth={3}
+                      />
+                    </>
+                  )}
+                </CartesianChart>
+              )}
             </View>
             <View style={[defaultStyles.block, { marginTop: 20 }]}>
               <Text style={styles.subtitle}>Overview</Text>
